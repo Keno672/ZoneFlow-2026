@@ -70,6 +70,7 @@ function chipList(items, klass = "chip blue") {
 
 
 
+
 function renderCardDeck() {
   const data = getPayload();
   const deck = document.getElementById("deck");
@@ -158,35 +159,28 @@ function renderCardDeck() {
             <div style="font-size:20px;font-weight:900;margin-top:6px">${data.battlefield.climate}</div>
           </div>
         </div>
-
         <div class="status-row" style="margin-top:14px">
           <div class="battle-bias-banner ${battleBiasClass === "buy" ? "buy" : ""}">
             ${battleBiasClass === "buy" ? "🟢" : "🔴"} ${(data.battlefield.bias || "").toUpperCase()} ASSAULT
           </div>
           <div class="intel-ribbon">🗺️ ${data.battlefield.theme}</div>
         </div>
-
         <div class="battle-map-upgrade">
           <div class="stamp">Tactical Battle Plan</div>
           <div class="sun"></div>
           <div class="mountains"></div>
           <div class="terrain"></div>
           <div class="support-sea"></div>
-
           <div class="battle-readout">
             <div class="tag">Campaign: ${(data.battlefield.bias || "").toUpperCase()}</div>
             <div class="tag">${battleSell ? "Ambush Route" : "Advance Route"}</div>
           </div>
-
           <div class="battle-line gold" style="top:24%"></div>
           <div class="battle-label" style="top:20%;right:18px">🎯 Victory · ${data.battlefield.victory}</div>
-
           <div class="battle-line ${battleSell ? "red" : "blue"}" style="top:46%"></div>
           <div class="battle-label" style="top:42%;right:18px">⚡ Trigger · ${data.battlefield.triggerLine}</div>
-
           <div class="battle-line ${battleSell ? "blue" : "red"}" style="top:68%"></div>
           <div class="battle-label" style="top:64%;right:18px">🛡️ Shield · ${data.battlefield.shieldLine}</div>
-
           <svg class="route-svg" viewBox="0 0 1000 420" preserveAspectRatio="none">
             ${
               battleSell
@@ -194,69 +188,101 @@ function renderCardDeck() {
                 : `<polyline fill="none" stroke="rgba(255,255,255,.94)" stroke-width="5" points="120,360 180,342 245,325 320,300 398,270 472,235 555,205 640,178 720,148 800,120 875,96 930,76" />`
             }
           </svg>
-
           <div class="battle-pill">${battleSell ? "⚔️ Engage sell route" : "⚔️ Engage attack route"}</div>
         </div>
-
         <div class="battle-metrics">
-          <div class="battle-stat">
-            <div class="t">Attack Zone</div>
-            <div class="v">${data.battlefield.attackZone}</div>
-            <div class="s">${battleSell ? "Sell into the rally zone" : "Advance through defended corridor"}</div>
-          </div>
-          <div class="battle-stat">
-            <div class="t">${battleSell ? "Breakthrough" : "Trigger Line"}</div>
-            <div class="v">${data.battlefield.triggerLine}</div>
-            <div class="s">${battleSell ? "Enemy push invalidation area" : "Control line before breakout"}</div>
-          </div>
-          <div class="battle-stat">
-            <div class="t">${battleSell ? "Stop / Break" : "Shield Line"}</div>
-            <div class="v">${data.battlefield.shieldLine}</div>
-            <div class="s">${battleSell ? "Abort if enemy breaks through" : "Main defence line"}</div>
-          </div>
-          <div class="battle-stat">
-            <div class="t">Victory Target</div>
-            <div class="v">${data.battlefield.victory}</div>
-            <div class="s">Primary battlefield objective</div>
-          </div>
+          <div class="battle-stat"><div class="t">Attack Zone</div><div class="v">${data.battlefield.attackZone}</div><div class="s">${battleSell ? "Sell into the rally zone" : "Advance through defended corridor"}</div></div>
+          <div class="battle-stat"><div class="t">${battleSell ? "Breakthrough" : "Trigger Line"}</div><div class="v">${data.battlefield.triggerLine}</div><div class="s">${battleSell ? "Enemy push invalidation area" : "Control line before breakout"}</div></div>
+          <div class="battle-stat"><div class="t">${battleSell ? "Stop / Break" : "Shield Line"}</div><div class="v">${data.battlefield.shieldLine}</div><div class="s">${battleSell ? "Abort if enemy breaks through" : "Main defence line"}</div></div>
+          <div class="battle-stat"><div class="t">Victory Target</div><div class="v">${data.battlefield.victory}</div><div class="s">Primary battlefield objective</div></div>
         </div>
-
         <div class="battle-order-panel">
           <div class="mini">Mission Brief</div>
           <p style="margin:8px 0 0;line-height:1.62">${data.battlefield.order}</p>
         </div>
       </div>
-
       <div class="footer-note">Upgraded Battlefield Card v3 → premium chart translated into a cinematic strike map</div>
     </div>
   </section>
 
-  <section class="card" style="background:radial-gradient(circle at top left, rgba(216,176,108,.14), transparent 28%),linear-gradient(180deg, rgba(28,18,10,.98), rgba(10,12,20,.98));">
+  <section class="card news-upgrade">
     <div class="card-header">
-      <div class="card-tag"><span class="dot" style="background:var(--amber)"></span> Free · News Intel</div>
+      <div class="card-tag"><span class="dot" style="background:var(--gold)"></span> Free · News Intel</div>
       <div class="price-box"><div class="mini">Affected Assets</div><div class="price" style="font-size:22px">${data.news.affected}</div></div>
     </div>
     <div class="card-body">
-      <div><div class="symbol">NEWS</div><div class="subtitle">ZoneFlow News Card</div><div class="rank">Built from uploaded macro headlines</div></div>
-      <div class="status-row">
-        <div class="pill ${newsBiasClass}">${data.news.support}</div>
-        <div class="pill macro">${data.news.climate}</div>
-        <div class="pill theme">${data.news.theme}</div>
+      <div class="news-shell">
+        <div class="news-top">
+          <div>
+            <div class="symbol">NEWS</div>
+            <div class="subtitle">ZoneFlow News Card</div>
+            <div class="rank">Macro condensed into battlefield context</div>
+          </div>
+          <div class="news-price-box">
+            <div class="mini">Climate</div>
+            <div style="font-size:20px;font-weight:900;margin-top:6px">${data.news.climate}</div>
+          </div>
+        </div>
+
+        <div class="status-row" style="margin-top:14px">
+          <div class="battle-bias-banner ${newsBiasClass === "buy" ? "buy" : ""}">
+            ${newsBiasClass === "buy" ? "🟢" : "🔴"} ${data.news.support}
+          </div>
+          <div class="intel-ribbon">📰 ${data.news.theme}</div>
+        </div>
+
+        <div class="news-scene-upgrade">
+          <div class="stamp">War Room Bulletin</div>
+          <div class="war-sun"></div>
+          <div class="mountains"></div>
+          <div class="war-room">
+            <div class="tag">Urgency: ${data.news.urgency}</div>
+            <div class="tag">Confidence: ${data.news.confidence}</div>
+          </div>
+          <div class="towers">🏰</div>
+          <div class="signal">📡</div>
+          <div class="sea"></div>
+          <div class="news-bulletin">
+            <div class="mini">Immediate Context</div>
+            <div class="headline">${data.news.biasEffect}</div>
+            <div style="margin-top:8px;color:var(--muted);font-size:13px">${data.news.summary}</div>
+          </div>
+        </div>
+
+        <div class="news-grid">
+          <div class="news-stat">
+            <div class="t">Bias Effect</div>
+            <div class="v">${data.news.biasEffect}</div>
+            <div class="s">How the headline tilts the battlefield</div>
+          </div>
+          <div class="news-stat">
+            <div class="t">Urgency</div>
+            <div class="v">${data.news.urgency}</div>
+            <div class="s">How immediate the threat or support is</div>
+          </div>
+          <div class="news-stat">
+            <div class="t">Confidence</div>
+            <div class="v">${data.news.confidence}</div>
+            <div class="s">How strong the current read is</div>
+          </div>
+          <div class="news-stat">
+            <div class="t">Watch</div>
+            <div class="v">${data.news.watch}</div>
+            <div class="s">What could flip the mood fast</div>
+          </div>
+        </div>
+
+        <div class="news-assets-panel">
+          <div class="mini">War Room Watchlist</div>
+          <div class="chips" style="margin-top:10px">${chipList(data.news.assets, "chip")}</div>
+        </div>
+
+        <div class="news-report-panel">
+          <div class="mini">Command Report</div>
+          <p style="margin:8px 0 0;line-height:1.62">${data.news.report}</p>
+        </div>
       </div>
-      <div class="art-panel">
-        <div class="stamp">Macro Dispatch</div>
-        <div class="news-sun"></div><div class="mountain-range"></div><div class="news-sea"></div>
-        <div class="news-brief">${data.news.summary}</div>
-      </div>
-      <div class="stats">
-        <div class="stat"><div class="label">Bias Effect</div><div class="value">${data.news.biasEffect}</div><div class="note">How the news tilts the field</div></div>
-        <div class="stat"><div class="label">Urgency</div><div class="value">${data.news.urgency}</div><div class="note">How immediate this is</div></div>
-        <div class="stat"><div class="label">Confidence</div><div class="value">${data.news.confidence}</div><div class="note">How strong the read is</div></div>
-        <div class="stat"><div class="label">Watch</div><div class="value">${data.news.watch}</div><div class="note">What can flip the tone</div></div>
-      </div>
-      <div class="panel"><div class="mini">War Room Use</div><div class="chips" style="margin-top:8px">${chipList(data.news.assets, "chip")}</div></div>
-      <div class="panel"><div class="mini">Field Report</div><p>${data.news.report}</p></div>
-      <div class="footer-note">Free card built from macro uploads → battlefield context behind the scan</div>
+      <div class="footer-note">Upgraded News Card v4 → macro headlines translated into a premium war room bulletin</div>
     </div>
   </section>
   `;
