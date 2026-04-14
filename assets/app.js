@@ -68,6 +68,7 @@ function chipList(items, klass = "chip blue") {
   return (items || []).map((i) => `<div class="${klass}">${i}</div>`).join("");
 }
 
+
 function renderCardDeck() {
   const data = getPayload();
   const deck = document.getElementById("deck");
@@ -79,36 +80,92 @@ function renderCardDeck() {
   const battleSell = (data.battlefield.mode || "").toLowerCase() === "sell";
 
   deck.innerHTML = `
-  <section class="card" style="background:radial-gradient(circle at top left, rgba(134,207,255,.12), transparent 28%),linear-gradient(180deg, rgba(8,18,38,.98), rgba(6,12,24,.98));">
+  <section class="card intel-upgrade">
     <div class="card-header">
       <div class="card-tag"><span class="dot" style="background:var(--cyan)"></span> Free · Scan Intel</div>
       <div class="price-box"><div class="mini">Live Price</div><div class="price">${data.intel.livePrice}</div></div>
     </div>
     <div class="card-body">
-      <div><div class="symbol">${data.intel.instrument}</div><div class="subtitle">ZoneFlow Intel Card</div><div class="rank">Built from uploaded scan</div></div>
-      <div class="status-row">
-        <div class="pill ${intelBiasClass}">${(data.intel.bias || "BUY").toUpperCase()} Bias</div>
-        <div class="pill macro">${data.intel.climate}</div>
-        <div class="pill theme">${data.intel.theme}</div>
+      <div class="intel-shell">
+        <div class="intel-title-row">
+          <div>
+            <div class="symbol">${data.intel.instrument}</div>
+            <div class="subtitle">ZoneFlow Intel Card</div>
+            <div class="rank">Scan-fed command brief</div>
+          </div>
+          <div class="intel-price-box">
+            <div class="mini">Battle Climate</div>
+            <div style="font-size:20px;font-weight:900;margin-top:6px">${data.intel.climate}</div>
+          </div>
+        </div>
+
+        <div class="status-row" style="margin-top:14px">
+          <div class="intel-banner-main ${intelBiasClass === "buy" ? "buy" : ""}">
+            ${intelBiasClass === "buy" ? "🟢" : "🔴"} ${(data.intel.bias || "").toUpperCase()}
+          </div>
+          <div class="intel-ribbon">📡 ${data.intel.theme}</div>
+        </div>
+
+        <div class="intel-scene" style="margin-top:16px">
+          <div class="stamp">Recon Summary</div>
+          <div class="intel-scan-lines"></div>
+          <div class="drone">🚁</div>
+          <div class="tower">🗼</div>
+          <div class="hill"></div>
+          <div class="intel-readout">
+            <div class="mini">Immediate Read</div>
+            <div class="intel-big-bias">${(data.intel.bias || "").toUpperCase()}</div>
+            <div style="margin-top:6px;color:var(--muted);font-size:13px">
+              ${data.intel.direction} · ${data.intel.force} force · ${data.intel.alignment} alignment
+            </div>
+          </div>
+        </div>
+
+        <div class="intel-grid" style="margin-top:16px">
+          <div class="intel-stat">
+            <div class="top"><span class="icon">🧭</span>Direction</div>
+            <div class="main">${data.intel.direction}</div>
+            <div class="sub">Who the field is leaning toward</div>
+          </div>
+          <div class="intel-stat">
+            <div class="top"><span class="icon">⚔️</span>Force</div>
+            <div class="main">${data.intel.force}</div>
+            <div class="sub">How hard the move is pressing</div>
+          </div>
+          <div class="intel-stat">
+            <div class="top"><span class="icon">🪖</span>Alignment</div>
+            <div class="main">${data.intel.alignment}</div>
+            <div class="sub">How many signals agree</div>
+          </div>
+          <div class="intel-stat">
+            <div class="top"><span class="icon">🏴</span>Control</div>
+            <div class="main">${data.intel.control}</div>
+            <div class="sub">Who holds territory now</div>
+          </div>
+          <div class="intel-stat">
+            <div class="top"><span class="icon">🛰️</span>Condition</div>
+            <div class="main">${data.intel.condition}</div>
+            <div class="sub">Trend, compression, or reversal watch</div>
+          </div>
+          <div class="intel-stat">
+            <div class="top"><span class="icon">☠️</span>Threat</div>
+            <div class="main">${data.intel.threat}</div>
+            <div class="sub">How dangerous the setup is</div>
+          </div>
+        </div>
+
+        <div class="intel-trigger-panel" style="margin-top:16px">
+          <div class="mini">Trigger Stack</div>
+          <div class="chips" style="margin-top:10px">${chipList(data.intel.triggerActivity, "chip blue")}</div>
+        </div>
+
+        <div class="intel-report" style="margin-top:16px">
+          <div class="mini">Field Report</div>
+          <p>${data.intel.report}</p>
+        </div>
       </div>
-      <div class="art-panel">
-        <div class="radar-bg"></div><div class="stamp">Recon Sweep</div>
-        <div class="ring r1"></div><div class="ring r2"></div><div class="ring r3"></div><div class="ring r4"></div>
-        <div class="crossh"></div><div class="crossv"></div><div class="sweep"></div>
-        <div class="blip b1"></div><div class="blip b2"></div><div class="blip b3"></div>
-        <div class="intel-banner"><div class="mini">Intel Bias</div><div class="big">${(data.intel.bias || "").toUpperCase()}</div><div style="margin-top:6px;color:var(--muted);font-size:13px">${data.intel.report}</div></div>
-      </div>
-      <div class="stats">
-        <div class="stat"><div class="label">Direction</div><div class="value">${data.intel.direction}</div><div class="note">Campaign direction</div></div>
-        <div class="stat"><div class="label">Force</div><div class="value">${data.intel.force}</div><div class="note">Scan strength / ADX style read</div></div>
-        <div class="stat"><div class="label">Alignment</div><div class="value">${data.intel.alignment}</div><div class="note">How much agrees</div></div>
-        <div class="stat"><div class="label">Control</div><div class="value">${data.intel.control}</div><div class="note">Who holds the field</div></div>
-        <div class="stat"><div class="label">Condition</div><div class="value">${data.intel.condition}</div><div class="note">Trend, compression, reversal watch</div></div>
-        <div class="stat"><div class="label">Threat</div><div class="value">${data.intel.threat}</div><div class="note">Risk level</div></div>
-      </div>
-      <div class="panel"><div class="mini">Trigger Activity</div><div class="chips" style="margin-top:8px">${chipList(data.intel.triggerActivity, "chip blue")}</div></div>
-      <div class="panel"><div class="mini">Field Report</div><p>${data.intel.report}</p></div>
-      <div class="footer-note">Free card built from scan → bias, force, alignment, condition, threat</div>
+
+      <div class="footer-note">Upgraded Intel Card v2 → scan translated into immediate command language</div>
     </div>
   </section>
 
@@ -181,7 +238,6 @@ function renderCardDeck() {
   </section>
   `;
 }
-
 function parseBrief(text, source) {
   const lines = text.split(/\n+/).map((x) => x.trim()).filter(Boolean);
   const out = {};
