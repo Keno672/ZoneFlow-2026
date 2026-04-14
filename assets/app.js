@@ -69,6 +69,7 @@ function chipList(items, klass = "chip blue") {
 }
 
 
+
 function renderCardDeck() {
   const data = getPayload();
   const deck = document.getElementById("deck");
@@ -98,14 +99,12 @@ function renderCardDeck() {
             <div style="font-size:20px;font-weight:900;margin-top:6px">${data.intel.climate}</div>
           </div>
         </div>
-
         <div class="status-row" style="margin-top:14px">
           <div class="intel-banner-main ${intelBiasClass === "buy" ? "buy" : ""}">
             ${intelBiasClass === "buy" ? "🟢" : "🔴"} ${(data.intel.bias || "").toUpperCase()}
           </div>
           <div class="intel-ribbon">📡 ${data.intel.theme}</div>
         </div>
-
         <div class="intel-scene" style="margin-top:16px">
           <div class="stamp">Recon Summary</div>
           <div class="intel-scan-lines"></div>
@@ -120,91 +119,115 @@ function renderCardDeck() {
             </div>
           </div>
         </div>
-
         <div class="intel-grid" style="margin-top:16px">
-          <div class="intel-stat">
-            <div class="top"><span class="icon">🧭</span>Direction</div>
-            <div class="main">${data.intel.direction}</div>
-            <div class="sub">Who the field is leaning toward</div>
-          </div>
-          <div class="intel-stat">
-            <div class="top"><span class="icon">⚔️</span>Force</div>
-            <div class="main">${data.intel.force}</div>
-            <div class="sub">How hard the move is pressing</div>
-          </div>
-          <div class="intel-stat">
-            <div class="top"><span class="icon">🪖</span>Alignment</div>
-            <div class="main">${data.intel.alignment}</div>
-            <div class="sub">How many signals agree</div>
-          </div>
-          <div class="intel-stat">
-            <div class="top"><span class="icon">🏴</span>Control</div>
-            <div class="main">${data.intel.control}</div>
-            <div class="sub">Who holds territory now</div>
-          </div>
-          <div class="intel-stat">
-            <div class="top"><span class="icon">🛰️</span>Condition</div>
-            <div class="main">${data.intel.condition}</div>
-            <div class="sub">Trend, compression, or reversal watch</div>
-          </div>
-          <div class="intel-stat">
-            <div class="top"><span class="icon">☠️</span>Threat</div>
-            <div class="main">${data.intel.threat}</div>
-            <div class="sub">How dangerous the setup is</div>
-          </div>
+          <div class="intel-stat"><div class="top"><span class="icon">🧭</span>Direction</div><div class="main">${data.intel.direction}</div><div class="sub">Who the field is leaning toward</div></div>
+          <div class="intel-stat"><div class="top"><span class="icon">⚔️</span>Force</div><div class="main">${data.intel.force}</div><div class="sub">How hard the move is pressing</div></div>
+          <div class="intel-stat"><div class="top"><span class="icon">🪖</span>Alignment</div><div class="main">${data.intel.alignment}</div><div class="sub">How many signals agree</div></div>
+          <div class="intel-stat"><div class="top"><span class="icon">🏴</span>Control</div><div class="main">${data.intel.control}</div><div class="sub">Who holds territory now</div></div>
+          <div class="intel-stat"><div class="top"><span class="icon">🛰️</span>Condition</div><div class="main">${data.intel.condition}</div><div class="sub">Trend, compression, or reversal watch</div></div>
+          <div class="intel-stat"><div class="top"><span class="icon">☠️</span>Threat</div><div class="main">${data.intel.threat}</div><div class="sub">How dangerous the setup is</div></div>
         </div>
-
         <div class="intel-trigger-panel" style="margin-top:16px">
           <div class="mini">Trigger Stack</div>
           <div class="chips" style="margin-top:10px">${chipList(data.intel.triggerActivity, "chip blue")}</div>
         </div>
-
         <div class="intel-report" style="margin-top:16px">
           <div class="mini">Field Report</div>
           <p>${data.intel.report}</p>
         </div>
       </div>
-
       <div class="footer-note">Upgraded Intel Card v2 → scan translated into immediate command language</div>
     </div>
   </section>
 
-  <section class="card locked" style="background:radial-gradient(circle at top left, rgba(216,176,108,.18), transparent 28%),linear-gradient(180deg, rgba(28,18,10,.98), rgba(7,12,30,.98));">
+  <section class="card battle-upgrade locked">
     <div class="card-header">
       <div class="card-tag"><span class="dot" style="background:var(--gold)"></span> Paid · Chart Battlefield</div>
       <div class="price-box"><div class="mini">Live Price</div><div class="price">${data.battlefield.livePrice}</div></div>
     </div>
     <div class="card-body">
-      <div><div class="symbol">${data.battlefield.instrument}</div><div class="subtitle">ZoneFlow Battlefield Card</div><div class="rank">Built from uploaded chart + levels</div></div>
-      <div class="status-row">
-        <div class="pill ${battleBiasClass}">${(data.battlefield.bias || "").toUpperCase()} Bias</div>
-        <div class="pill macro">${data.battlefield.climate}</div>
-        <div class="pill theme">${data.battlefield.theme}</div>
+      <div class="battle-shell">
+        <div class="battle-top">
+          <div>
+            <div class="symbol">${data.battlefield.instrument}</div>
+            <div class="subtitle">ZoneFlow Battlefield Card</div>
+            <div class="rank">Premium strike map from uploaded chart</div>
+          </div>
+          <div class="battle-price-box">
+            <div class="mini">Campaign State</div>
+            <div style="font-size:20px;font-weight:900;margin-top:6px">${data.battlefield.climate}</div>
+          </div>
+        </div>
+
+        <div class="status-row" style="margin-top:14px">
+          <div class="battle-bias-banner ${battleBiasClass === "buy" ? "buy" : ""}">
+            ${battleBiasClass === "buy" ? "🟢" : "🔴"} ${(data.battlefield.bias || "").toUpperCase()} ASSAULT
+          </div>
+          <div class="intel-ribbon">🗺️ ${data.battlefield.theme}</div>
+        </div>
+
+        <div class="battle-map-upgrade">
+          <div class="stamp">Tactical Battle Plan</div>
+          <div class="sun"></div>
+          <div class="mountains"></div>
+          <div class="terrain"></div>
+          <div class="support-sea"></div>
+
+          <div class="battle-readout">
+            <div class="tag">Campaign: ${(data.battlefield.bias || "").toUpperCase()}</div>
+            <div class="tag">${battleSell ? "Ambush Route" : "Advance Route"}</div>
+          </div>
+
+          <div class="battle-line gold" style="top:24%"></div>
+          <div class="battle-label" style="top:20%;right:18px">🎯 Victory · ${data.battlefield.victory}</div>
+
+          <div class="battle-line ${battleSell ? "red" : "blue"}" style="top:46%"></div>
+          <div class="battle-label" style="top:42%;right:18px">⚡ Trigger · ${data.battlefield.triggerLine}</div>
+
+          <div class="battle-line ${battleSell ? "blue" : "red"}" style="top:68%"></div>
+          <div class="battle-label" style="top:64%;right:18px">🛡️ Shield · ${data.battlefield.shieldLine}</div>
+
+          <svg class="route-svg" viewBox="0 0 1000 420" preserveAspectRatio="none">
+            ${
+              battleSell
+                ? `<polyline fill="none" stroke="rgba(255,255,255,.94)" stroke-width="5" points="820,80 760,110 700,142 640,170 590,205 520,242 455,275 390,304 320,328 250,350 180,364 115,376" />`
+                : `<polyline fill="none" stroke="rgba(255,255,255,.94)" stroke-width="5" points="120,360 180,342 245,325 320,300 398,270 472,235 555,205 640,178 720,148 800,120 875,96 930,76" />`
+            }
+          </svg>
+
+          <div class="battle-pill">${battleSell ? "⚔️ Engage sell route" : "⚔️ Engage attack route"}</div>
+        </div>
+
+        <div class="battle-metrics">
+          <div class="battle-stat">
+            <div class="t">Attack Zone</div>
+            <div class="v">${data.battlefield.attackZone}</div>
+            <div class="s">${battleSell ? "Sell into the rally zone" : "Advance through defended corridor"}</div>
+          </div>
+          <div class="battle-stat">
+            <div class="t">${battleSell ? "Breakthrough" : "Trigger Line"}</div>
+            <div class="v">${data.battlefield.triggerLine}</div>
+            <div class="s">${battleSell ? "Enemy push invalidation area" : "Control line before breakout"}</div>
+          </div>
+          <div class="battle-stat">
+            <div class="t">${battleSell ? "Stop / Break" : "Shield Line"}</div>
+            <div class="v">${data.battlefield.shieldLine}</div>
+            <div class="s">${battleSell ? "Abort if enemy breaks through" : "Main defence line"}</div>
+          </div>
+          <div class="battle-stat">
+            <div class="t">Victory Target</div>
+            <div class="v">${data.battlefield.victory}</div>
+            <div class="s">Primary battlefield objective</div>
+          </div>
+        </div>
+
+        <div class="battle-order-panel">
+          <div class="mini">Mission Brief</div>
+          <p style="margin:8px 0 0;line-height:1.62">${data.battlefield.order}</p>
+        </div>
       </div>
-      <div class="art-panel">
-        <div class="battle-map"></div><div class="stamp">Battlefield Concept</div><div class="mountain-band"></div>
-        <div class="attack-zone ${battleSell ? "sell" : ""}"></div><div class="support-sea"></div>
-        <div class="level thin" style="top:14%;border-color:#fff7d1"></div>
-        <div class="level" style="top:26%;border-color:var(--gold)"></div>
-        <div class="level" style="top:43%;border-color:var(--cyan)"></div>
-        <div class="level" style="top:64%;border-color:var(--red)"></div>
-        <svg class="battle-svg" viewBox="0 0 1000 420" preserveAspectRatio="none">
-          ${
-            battleSell
-              ? `<polyline fill="none" stroke="rgba(255,255,255,.94)" stroke-width="4" points="0,250 90,220 170,185 255,155 360,132 450,165 545,210 650,245 760,285 885,322 1000,350" />`
-              : `<polyline fill="none" stroke="rgba(255,255,255,.94)" stroke-width="4" points="0,350 90,322 180,286 280,254 370,214 470,168 570,182 670,138 775,124 885,107 950,97 1000,83" />`
-          }
-        </svg>
-        <div class="route-label">${battleSell ? "⚔️ Ambush route active" : "⚔️ Advance route active"}</div>
-      </div>
-      <div class="stats">
-        <div class="stat"><div class="label">Attack Zone</div><div class="value">${data.battlefield.attackZone}</div><div class="note">${battleSell ? "Sell corridor" : "Buy defended zone"}</div></div>
-        <div class="stat"><div class="label">${battleSell ? "Breakthrough" : "Trigger Line"}</div><div class="value">${data.battlefield.triggerLine}</div><div class="note">${battleSell ? "Enemy stop line" : "Control line"}</div></div>
-        <div class="stat"><div class="label">${battleSell ? "Stop / Break" : "Shield Line"}</div><div class="value">${data.battlefield.shieldLine}</div><div class="note">${battleSell ? "Abort if broken" : "Defence line"}</div></div>
-        <div class="stat"><div class="label">Victory</div><div class="value">${data.battlefield.victory}</div><div class="note">Primary objective</div></div>
-      </div>
-      <div class="panel"><div class="mini">Tactical Order</div><p>${data.battlefield.order}</p></div>
-      <div class="footer-note">Paid card built from chart → zone, trigger, defence, objective, route</div>
+
+      <div class="footer-note">Upgraded Battlefield Card v3 → premium chart translated into a cinematic strike map</div>
     </div>
   </section>
 
