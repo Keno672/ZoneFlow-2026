@@ -1,1 +1,230 @@
-<!doctype html><html lang='en'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>ZoneFlow Card System</title><link rel='stylesheet' href='assets/styles.css'></head><body><div class='wrap'><div class='eyebrow'>ZoneFlow</div><h1>ZoneFlow Card System</h1><div class='nav'><a class='badge' href='index.html'>Home</a><a class='badge' href='pricing.html'>Pricing</a><a class='badge' href='admin.html'>Admin Desk</a></div><div class='header-card'><strong>3-card app logic:</strong> Scan upload populates the <strong>Intel Card</strong>. Chart / zone brief populates the <strong>Battlefield Card</strong>. News upload populates the <strong>News Card</strong>.<br><strong>Subscription logic:</strong> Free = Intel + News. Paid = Battlefield. Weekly price = €5 / Fiat or Crypto.</div><div id='deck' class='deck'></div></div><script src='assets/app.js'></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ZoneFlow</title>
+  <link rel="stylesheet" href="assets/styles.css">
+  <style>
+    .hero{
+      display:grid;grid-template-columns:1.1fr .9fr;gap:22px;align-items:center;
+      margin:18px 0 28px;
+    }
+    .hero-panel,.section-card{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      border-radius:28px;
+      box-shadow:var(--shadow);
+    }
+    .hero-panel{padding:24px}
+    .hero h1{font-size:clamp(42px,6vw,78px)}
+    .cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+    .hero-art{
+      min-height:520px;padding:18px;display:grid;grid-template-columns:1fr 1fr;gap:14px;
+      background:
+        radial-gradient(circle at top right, rgba(216,176,108,.10), transparent 20%),
+        linear-gradient(180deg, rgba(24,18,12,.98), rgba(8,12,24,.98));
+    }
+    .mini-card{
+      border:1px solid rgba(255,236,204,.12);
+      border-radius:24px;overflow:hidden;position:relative;
+      background:rgba(255,255,255,.04)
+    }
+    .mini-card .head{
+      display:flex;justify-content:space-between;gap:10px;padding:12px 14px;border-bottom:1px solid var(--line)
+    }
+    .mini-card .body{padding:14px}
+    .mini-card h3{margin:0;font-size:22px;font-family:Georgia,"Times New Roman",serif}
+    .mini-card p{margin:8px 0 0;color:var(--muted);line-height:1.5;font-size:14px}
+    .stack{display:grid;gap:18px}
+    .section-card{padding:22px;margin:0 0 18px}
+    .section-card h2{margin:0 0 10px;font-size:32px}
+    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .step,.plan,.market{
+      border:1px solid var(--line);border-radius:22px;padding:16px;background:rgba(255,255,255,.03)
+    }
+    .plans{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .markets{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    .market{font-weight:700;text-align:center}
+    .footer-cta{
+      text-align:center;padding:34px 22px
+    }
+    .nav{
+      display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap;
+      margin-bottom:12px
+    }
+    .nav-links{display:flex;gap:10px;flex-wrap:wrap}
+    .nav-links a{
+      padding:10px 14px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.04)
+    }
+    @media (max-width:1100px){
+      .hero,.steps,.plans,.markets,.hero-art{grid-template-columns:1fr}
+      .hero-art{min-height:auto}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="nav">
+      <div>
+        <div class="eyebrow">ZoneFlow</div>
+      </div>
+      <div class="nav-links">
+        <a href="#how">How it Works</a>
+        <a href="#cards">Cards</a>
+        <a href="#pricing">Pricing</a>
+        <a href="admin.html">Admin</a>
+        <a href="dashboard.html">App Preview</a>
+      </div>
+    </div>
+
+    <section class="hero">
+      <div class="hero-panel">
+        <div class="eyebrow">Free Intel. Premium Battlefield.</div>
+        <h1>Turn market chaos into a battle plan</h1>
+        <p class="lead">
+          ZoneFlow converts <strong>scan, chart, and news</strong> into clear command cards.
+          Free users get <strong>Intel + News</strong>. Premium users unlock the full <strong>Battlefield Plan</strong>.
+        </p>
+        <div class="cta-row">
+          <a class="btn primary" href="dashboard.html">Start Free</a>
+          <a class="btn" href="pricing.html">Unlock Battlefield</a>
+          <a class="btn" href="admin.html">Login</a>
+          <a class="btn" href="admin.html">Connect Wallet</a>
+        </div>
+      </div>
+
+      <div class="hero-panel hero-art">
+        <div class="mini-card">
+          <div class="head"><div class="card-tag"><span class="dot" style="background:var(--cyan)"></span> Intel</div></div>
+          <div class="body">
+            <h3>Intel Card</h3>
+            <p>Bias, force, alignment, control, condition, and threat from the scan.</p>
+          </div>
+        </div>
+        <div class="mini-card">
+          <div class="head"><div class="card-tag"><span class="dot" style="background:var(--gold)"></span> Battlefield</div></div>
+          <div class="body">
+            <h3>Battlefield Card</h3>
+            <p>Attack zone, trigger line, shield line, and victory target from the chart.</p>
+          </div>
+        </div>
+        <div class="mini-card" style="grid-column:1 / -1; min-height:240px;">
+          <div class="head"><div class="card-tag"><span class="dot" style="background:var(--amber)"></span> News</div></div>
+          <div class="body">
+            <h3>News Card</h3>
+            <p>Macro headlines condensed into a war room bulletin so users understand why the battlefield is supportive, stressed, or unstable.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="how" class="section-card">
+      <h2>How ZoneFlow works</h2>
+      <p class="lead" style="margin-top:0">Three inputs. Three command cards.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="eyebrow">1. Scan</div>
+          <h3>Scan becomes Intel</h3>
+          <p>Bias, force, alignment, control, and threat are translated into an instant battlefield read.</p>
+        </div>
+        <div class="step">
+          <div class="eyebrow">2. Chart</div>
+          <h3>Chart becomes Battlefield</h3>
+          <p>The chart and your levels become the premium battle plan with zone, trigger, shield, and objective.</p>
+        </div>
+        <div class="step">
+          <div class="eyebrow">3. News</div>
+          <h3>News becomes Context</h3>
+          <p>Headlines are condensed into a war room bulletin showing urgency, support, pressure, and assets affected.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="cards" class="section-card">
+      <h2>Three-card system</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="card-tag"><span class="dot" style="background:var(--cyan)"></span> Free</div>
+          <h3>Intel Card</h3>
+          <p>Built from the scan. Shows what the instrument is doing right now.</p>
+        </div>
+        <div class="step">
+          <div class="card-tag"><span class="dot" style="background:var(--amber)"></span> Free</div>
+          <h3>News Card</h3>
+          <p>Built from macro and headline input. Shows whether the battlefield is being supported, stressed, or destabilised.</p>
+        </div>
+        <div class="step">
+          <div class="card-tag"><span class="dot" style="background:var(--gold)"></span> Paid</div>
+          <h3>Battlefield Card</h3>
+          <p>Built from the chart and levels. Shows where to enter, where the line breaks, and where the target sits.</p>
+        </div>
+      </div>
+      <p class="lead" style="margin-bottom:0"><strong>Free users see the battlefield. Premium users get the mission.</strong></p>
+    </section>
+
+    <section class="section-card">
+      <h2>Why ZoneFlow is different</h2>
+      <p class="lead" style="margin-top:0">
+        Most trading tools flood users with noise. ZoneFlow filters the battlefield and turns the best setups into simple command cards.
+      </p>
+      <div class="chips">
+        <div class="chip">Scan-driven</div>
+        <div class="chip">Mobile-first</div>
+        <div class="chip">Easy to understand</div>
+        <div class="chip">Fast decisions</div>
+        <div class="chip">Top daily setups</div>
+      </div>
+    </section>
+
+    <section id="pricing" class="section-card">
+      <h2>Free vs Premium</h2>
+      <div class="plans">
+        <div class="plan">
+          <div class="eyebrow">Free Recon</div>
+          <h3>Intel + News</h3>
+          <p>Featured Intel Card, featured News Card, limited tracked assets, and market awareness layer.</p>
+        </div>
+        <div class="plan">
+          <div class="eyebrow">Premium Battlefield</div>
+          <h3>Top 3–5 setups</h3>
+          <p>Full Battlefield Cards, premium watchlist, tactical order and levels, chart-driven battle plans.</p>
+          <p><strong>€5 per week</strong><br>Fiat and crypto supported.</p>
+        </div>
+      </div>
+      <div class="cta-row">
+        <a class="btn primary" href="dashboard.html">Start Free</a>
+        <a class="btn good" href="pricing.html">Unlock Battlefield</a>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <h2>Tracked markets</h2>
+      <p class="lead" style="margin-top:0">ZoneFlow tracks the battlefield, then filters the best missions.</p>
+      <div class="markets">
+        <div class="market">SPX500</div>
+        <div class="market">NAS100</div>
+        <div class="market">BTC</div>
+        <div class="market">ETH</div>
+        <div class="market">Gold</div>
+        <div class="market">DXY</div>
+        <div class="market">Oil</div>
+        <div class="market">Russell</div>
+      </div>
+    </section>
+
+    <section class="section-card footer-cta">
+      <div class="eyebrow">Enter the command desk</div>
+      <h2>Start with free Intel and News</h2>
+      <p class="lead" style="margin:10px auto 18px;max-width:760px">
+        Unlock premium Battlefield Plans when you are ready.
+      </p>
+      <div class="cta-row" style="justify-content:center">
+        <a class="btn primary" href="dashboard.html">Start Free</a>
+        <a class="btn good" href="pricing.html">Unlock Premium</a>
+        <a class="btn" href="admin.html">Login</a>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
